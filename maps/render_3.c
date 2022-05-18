@@ -20,7 +20,7 @@ void	rend_floor(t_ray *r, t_texture *t, t_env *env, t_player *player)
 	SDL_Color	rgb;
 	Uint32		data;
 
-	darkness = range_conversion_val((t_pnt){W_H, (W_H / 2)},
+	darkness = range_conv_val((t_pnt){W_H, (W_H / 2)},
 			(t_pnt){1, 0}, env->y);
 	env->line.y = env->y;
 	dy = env->y - (W_H / 2.0);
@@ -46,7 +46,7 @@ void	rend_ceil(t_ray *r, t_texture *t, t_env *env, t_player *player)
 	SDL_Color	rgb;
 	Uint32		data;
 
-	darkness = range_conversion_val((t_pnt){W_H,
+	darkness = range_conv_val((t_pnt){W_H,
 			(W_H / 2)}, (t_pnt){1, 0}, env->y);
 	env->line.y = (W_H / 2.0) - (env->y - (W_H / 2.0)) - 1;
 	SDL_SetRenderDrawColor(env->rend, 150, 150, 200, 255);
@@ -70,7 +70,7 @@ void	wall_with_texture(SDL_Renderer *rend, t_ray *r, t_texture *t)
 	SDL_Color		rgb;
 	unsigned int	data;
 
-	darkness = range_conversion_val((t_pnt){cellS * 24, 0},
+	darkness = range_conv_val((t_pnt){cellS * 24, 0},
 			(t_pnt){0, 1}, r->dist);
 	if (t->num == 2)
 		r->shade = 1;

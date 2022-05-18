@@ -56,7 +56,7 @@ void	rend_floor(SDL_Renderer *rend, t_ray *r, t_texture *t, t_env *env, SDL_Rect
 	SDL_Color	rgb;
 	Uint32		data;
 
-	darkness = range_conversion_val((t_pnt){W_H, (W_H / 2)}, (t_pnt){1, 0}, y);
+	darkness = range_conv_val((t_pnt){W_H, (W_H / 2)}, (t_pnt){1, 0}, y);
 	line->y = y;
 	dy = y - (W_H / 2.0);
 	r->ra = safe_angle(r->ra);
@@ -81,7 +81,7 @@ void	rend_ceil(SDL_Renderer *rend, t_ray *r, t_texture *t, t_env *env, SDL_Rect 
 	SDL_Color	rgb;
 	Uint32		data;
 
-	darkness = range_conversion_val((t_pnt){W_H, (W_H / 2)}, (t_pnt){1, 0}, y);
+	darkness = range_conv_val((t_pnt){W_H, (W_H / 2)}, (t_pnt){1, 0}, y);
 	line->y = (W_H / 2.0) - (y - (W_H / 2.0)) - 1;
 	SDL_SetRenderDrawColor(rend, 150, 150, 200, 255);
 	if (env->texture && !env->skybox)
@@ -104,7 +104,7 @@ void	wall_with_texture(SDL_Renderer *rend, t_ray *r, t_texture *t)
 	SDL_Color		rgb;
 	unsigned int	data;
 
-	darkness = range_conversion_val((t_pnt){cellS * 24, 0},
+	darkness = range_conv_val((t_pnt){cellS * 24, 0},
 			(t_pnt){0, 1}, r->dist);
 	if (t->num == 2)
 		r->shade = 1;

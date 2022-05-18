@@ -51,15 +51,14 @@ void	h_direction(t_ray *ray, t_rend_vars *v, t_player *player, t_env *env)
 			ray->ry = (((int)(player->y) / cellS) * cellS - 0.0001);
 			ray->rx = player->x - (ray->ry - player->y) * a_tan;
 			ray->yo = -(cellS);
-			ray->xo = -ray->yo * a_tan;
 		}
 		if (ray->ra > PI)
 		{
 			ray->ry = (((int)(player->y) / cellS) * cellS) + cellS;
 			ray->rx = player->x - (ray->ry - player->y) * a_tan;
 			ray->yo = cellS;
-			ray->xo = -ray->yo * a_tan;
 		}
+		ray->xo = -ray->yo * a_tan;
 	}
 	else
 	{
@@ -99,22 +98,20 @@ void	v_direction(t_ray *ray, t_rend_vars *v, t_player *player, t_env *env)
 void	render_view(t_env *env, t_player *player, t_ray r, t_texture t)
 {
 	float		line_h;
-	SDL_Rect	line;
-	int			y;
 
-	line.w = W_W / numRays;
-	line.x = r.num * line.w;
-	line.h = 1;
+	env->line.w = W_W / numRays;
+	env->line.x = r.num * env->line.w;
+	env->line.h = 1;
 	line_h = (WALL_H * 220) / r.dist;
-	select_texture(&t, env->walls, env->quit, env->doors, env);
+	select_texture(&t, env);
 	texture_cords(&t, &r, &line_h);
-	rend_wall(env->rend, &r, &t, line_h, env, &line);
-	y = (W_H / 2) + (line_h / 2);
-	while (y < W_H)
+	rend_wall(&r, &t, line_h, env);
+	env->y = (W_H / 2) + (line_h / 2);
+	while (env->y < W_H)
 	{
-		rend_floor(env->rend, &r, &t, env, &line, y, player, env->floor);
-		rend_ceil(env->rend, &r, &t, env, &line, y, player, env->ceil);
-		y++;
+		rend_floor(&r, &t, env, player);
+		rend_ceil(&r, &t, env, player);
+		env->y++;
 	}
 }
 

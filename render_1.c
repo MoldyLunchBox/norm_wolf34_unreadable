@@ -29,7 +29,8 @@ void	vertical_line(t_env *env, t_ray *ray, t_texture *tex, t_player *player)
 	while (env->v.dof < env->mps)
 	{
 		init_map_line(env, ray, &env->v);
-		if (env->v.mp > 0 && env->v.mp < env->mps * env->mps && env->map[env->v.mp] >= 1)
+		if (env->v.mp > 0 && env->v.mp < env->mps * env->mps
+			&& env->map[env->v.mp] >= 1)
 		{
 			ray->vx = ray->rx;
 			ray->vy = ray->ry;
@@ -46,21 +47,22 @@ void	vertical_line(t_env *env, t_ray *ray, t_texture *tex, t_player *player)
 	}
 }
 
-void	horizontal_line(t_env *env, t_ray *ray, t_texture *tex, t_player *player)
+void	horizontal_line(t_env *env, t_ray *ray, t_texture *tex, t_player *p)
 {
 	env->v.dof = 0;
 	ray->dist_h = 100000;
-	ray->hx = player->x;
-	ray->hy = player->y;
-	h_direction(ray, &env->v, player, env);
+	ray->hx = p->x;
+	ray->hy = p->y;
+	h_direction(ray, &env->v, p, env);
 	while (env->v.dof < env->mps)
 	{
 		init_map_line(env, ray, &env->v);
-		if (env->v.mp > 0 && env->v.mp < env->mps * env->mps && env->map[env->v.mp] >= 1)
+		if (env->v.mp > 0 && env->v.mp < env->mps * env->mps
+			&& env->map[env->v.mp] >= 1)
 		{
 			ray->hx = ray->rx;
 			ray->hy = ray->ry;
-			ray->dist_h = distance(player->x, player->y, ray->hx, ray->hy);
+			ray->dist_h = distance(p->x, p->y, ray->hx, ray->hy);
 			env->v.dof = env->mps;
 			tex->hmt = env->map[env->v.mp];
 		}	

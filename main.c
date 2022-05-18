@@ -90,7 +90,7 @@ void	run_game(t_env *env, t_player *player)
 int	main(int argc, char *argv[])
 {
 	t_env			env;
-	t_player				player;
+	t_player		player;
 
 	parsing(&env, argv[1]);
 	init_game(&env, &player);

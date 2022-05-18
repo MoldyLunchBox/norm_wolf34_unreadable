@@ -39,7 +39,7 @@ void	sprite_in_vision(t_player *player, t_obj *o_s, t_env *env, float dif)
 
 	o_s->h = ((WALL_H * 220) / o_s->dist_to_player) / o_s->size_y;
 	o_s->w = ((WALL_H * 220) / o_s->dist_to_player) / o_s->size_x;
-	vars.sx = range_conversion_val((t_pnt){dtor(player->fov / 2),
+	vars.sx = range_conv_val((t_pnt){dtor(player->fov / 2),
 			-dtor(player->fov / 2)}, (t_pnt){W_W, -o_s->w}, dif);
 	vars.on_floor = ((WALL_H * 220) / o_s->dist_to_player) / 2;
 	if (o_s->state == 5)

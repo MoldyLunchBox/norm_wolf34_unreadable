@@ -45,7 +45,7 @@ Uint32	getpixel(SDL_Surface *surface, int x, int y)
 		return (0);
 }
 
-float	range_conversion_val(t_pnt old, t_pnt new, float old_value)
+float	range_conv_val(t_pnt old, t_pnt new, float old_value)
 {
 	float	old_range;
 	float	new_range;

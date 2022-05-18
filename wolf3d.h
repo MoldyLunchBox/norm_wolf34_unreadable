@@ -321,6 +321,8 @@ typedef struct	s_environment
 	t_decor_texture	t;
 	t_rect_decor		rd;
 	t_rend_vars v;
+	int y;
+	SDL_Rect line;
 }				t_env;
 
 
@@ -335,7 +337,7 @@ float safe_angle(float a);
 float safe_angle_180(float a);
 void safe_map(t_player *player, float pdx, float pdy, t_env *env);
 void color_fix(t_color *c);
-float range_conversion_val(t_pnt old, t_pnt new, float old_value);
+float range_conv_val(t_pnt old, t_pnt new, float old_value);
 float distance(float ax, float ay, float bx, float by);
 Uint32 getpixel(SDL_Surface *surface, int x, int y);
 void draw_square(SDL_Renderer *rend, int size, int x, int y);
@@ -379,11 +381,11 @@ void h_direction(t_ray *ray, t_rend_vars *v, t_player *player, t_env *env);
 void v_direction(t_ray *ray, t_rend_vars *v, t_player *player, t_env *env);
 void render_view(t_env *env, t_player *player, t_ray r, t_texture t);
 void closer_line(SDL_Renderer *rend, t_ray *ray, t_texture *tex);
-void rend_floor(SDL_Renderer *rend, t_ray *r, t_texture *t, t_env *env, SDL_Rect *line, int y, t_player *player, SDL_Surface *floor);
-void rend_ceil(SDL_Renderer *rend, t_ray *r, t_texture *t, t_env *env, SDL_Rect *line, int y, t_player *player, SDL_Surface *ceil);
+void rend_floor(t_ray *r, t_texture *t, t_env *env, t_player *player);
+void rend_ceil(t_ray *r, t_texture *t, t_env *env, t_player *player);
 void wall_with_texture(SDL_Renderer *rend, t_ray *r, t_texture *t);
-void rend_wall(SDL_Renderer *rend, t_ray *r, t_texture *t, double line_h, t_env *env, SDL_Rect *line);
-void select_texture(t_texture *t, SDL_Surface **walls, SDL_Surface **quit, SDL_Surface **doors, t_env *env);
+void	rend_wall(t_ray *r, t_texture *t, double line_h, t_env *env);
+void	select_texture(t_texture *t, t_env *env);
 t_pnt movement(t_player *player);
 void hit_sprites(t_player *player, t_obj *ob_sprites, t_env *env);
 void player_damage_lose(t_player *player, t_obj *ob_sprites, t_env *env);
