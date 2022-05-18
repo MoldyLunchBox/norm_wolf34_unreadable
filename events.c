@@ -12,7 +12,7 @@
 
 #include "wolf3d.h"
 
-void	key_down_event(t_envirenment *env,  SDL_Event e)
+void	key_down_event(t_envirenment *env, SDL_Event e)
 {
 	if (e.key.keysym.sym == SDLK_ESCAPE)
 		env->is_run = SDL_FALSE;
@@ -31,7 +31,7 @@ void	key_down_event(t_envirenment *env,  SDL_Event e)
 		}
 	}
 	if (e.key.keysym.sym == SDLK_w || e.key.keysym.sym == SDLK_s)
-      	Mix_Resume(0);
+		Mix_Resume(0);
 	if (e.key.keysym.sym == SDLK_p)
 		env->cursor = !env->cursor;
 }
@@ -40,30 +40,29 @@ void	mouse_event(t_envirenment *env, t_player *player, SDL_Event e, t_obj *ob_sp
 {
 	if (env->screen == 2)
 	{
-		//fire shoot
 		player->gun_animation = SDL_TRUE;
 		player->frame_gun_x = 0;
 		player->is_shoot = SDL_TRUE;
 		Mix_PlayChannel(1, env->gun_fire_sound, 0);
 	}
-    sound_press(e.button, env);
+	sound_press(e.button, env);
 	play_press(e.button, env);
-	quit_press(e.button, env); 
-    menu_icon_press(e.button, env);
-    close_btn_press(e.button, env);
-    menu_buttons_press(e.button, env, player, ob_sprites, tx_sprites);
+	quit_press(e.button, env);
+	menu_icon_press(e.button, env);
+	close_btn_press(e.button, env);
+	menu_buttons_press(e.button, env, player, ob_sprites, tx_sprites);
 	back_btn_press(e.button, env, player);
 	replay_press(e.button, env);
 }
 
-void event(SDL_Event e, t_envirenment *env, t_player *player)
+void	event(SDL_Event e, t_envirenment *env, t_player *player)
 {
 	if (e.type == SDL_QUIT)
 		env->is_run = SDL_FALSE;
 	if (e.type == SDL_TEXTINPUT && env->screen == 4 && env->len_code < 5)
 	{
-		 strcat(env->rust_code, e.text.text);
-		 env->len_code++;
+		strcat(env->rust_code, e.text.text);
+		env->len_code++;
 	}
 	if (e.type == SDL_MOUSEMOTION)
 	{
@@ -78,4 +77,3 @@ void event(SDL_Event e, t_envirenment *env, t_player *player)
 		if (e.key.keysym.sym == SDLK_w || e.key.keysym.sym == SDLK_s)
 			Mix_Pause(0);
 }
-

@@ -12,7 +12,7 @@
 
 #include "wolf3d.h"
 
-void select_texture(t_texture *t, SDL_Surface **walls, SDL_Surface **quit, SDL_Surface **doors, t_envirenment *env)
+void	select_texture(t_texture *t, SDL_Surface **walls, SDL_Surface **quit, SDL_Surface **doors, t_envirenment *env)
 {
 	if (t->num == 1)
 		(t->img) = walls[0];
@@ -48,72 +48,78 @@ void select_texture(t_texture *t, SDL_Surface **walls, SDL_Surface **quit, SDL_S
 		(t->img) = quit[env->frame_quit];
 }
 
-void rend_floor(SDL_Renderer *rend, t_ray *r, t_texture *t, t_envirenment *env, SDL_Rect *line, int y, t_player *player, SDL_Surface *floor)
+void	rend_floor(SDL_Renderer *rend, t_ray *r, t_texture *t, t_envirenment *env, SDL_Rect *line, int y, t_player *player, SDL_Surface *floor)
 {
-	float darkness;
-	float dy;
-	float raFix;
-	SDL_Color rgb;
-	Uint32 data;
+	float		darkness;
+	float		dy;
+	float		ra_fix;
+	SDL_Color	rgb;
+	Uint32		data;
 
 	darkness = range_conversion_val((t_pnt){W_H, (W_H / 2)}, (t_pnt){1, 0}, y);
 	line->y = y;
 	dy = y - (W_H / 2.0);
 	r->ra = safe_angle(r->ra);
-	raFix = cos(player->a - r->ra);
-	t->tx = player->x * 28 + cos(r->ra) * 220 * floor->w / dy / raFix;
-	t->ty = player->y * 28 - sin(r->ra) * 220 * floor->w / dy / raFix;
+	ra_fix = cos(player->a - r->ra);
+	t->tx = player->x * 28 + cos(r->ra) * 220 * floor->w / dy / ra_fix;
+	t->ty = player->y * 28 - sin(r->ra) * 220 * floor->w / dy / ra_fix;
 	SDL_SetRenderDrawColor(rend, 200, 100, 50, 255);
 	if (env->texture)
 	{
-		data = getpixel(floor, (int)(t->tx)&(floor->w - 1), (int)(t->ty)&(floor->w - 1));
+		data = getpixel(floor, (int)(t->tx) & (floor->w - 1), (int)(t->ty)
+				& (floor->w - 1));
 		SDL_GetRGB(data, floor->format, &rgb.r, &rgb.g, &rgb.b);
-		SDL_SetRenderDrawColor(rend, rgb.r * darkness, rgb.g * darkness, rgb.b * darkness, 255);
+		SDL_SetRenderDrawColor(rend, rgb.r * darkness, rgb.g * darkness,
+			rgb.b * darkness, 255);
 	}
 	SDL_RenderFillRect(rend, line);
 }
 
-void rend_ceil(SDL_Renderer *rend, t_ray *r, t_texture *t, t_envirenment *env, SDL_Rect *line, int y, t_player *player, SDL_Surface *ceil)
+void	rend_ceil(SDL_Renderer *rend, t_ray *r, t_texture *t, t_envirenment *env, SDL_Rect *line, int y, t_player *player, SDL_Surface *ceil)
 {
-	float darkness;
-	SDL_Color rgb;
-	Uint32 data;
+	float		darkness;
+	SDL_Color	rgb;
+	Uint32		data;
 
 	darkness = range_conversion_val((t_pnt){W_H, (W_H / 2)}, (t_pnt){1, 0}, y);
-	line->y = (W_H/2.0) - (y - (W_H/2.0)) - 1;
+	line->y = (W_H / 2.0) - (y - (W_H / 2.0)) - 1;
 	SDL_SetRenderDrawColor(rend, 150, 150, 200, 255);
 	if (env->texture && !env->skybox)
 	{
-		data = getpixel(ceil, (int)(t->tx)&(ceil->w - 1), (int)(t->ty)&(ceil->w - 1));
+		data = getpixel(ceil, (int)(t->tx) & (ceil->w - 1), (int)(t->ty)
+				& (ceil->w - 1));
 		SDL_GetRGB(data, ceil->format, &rgb.r, &rgb.g, &rgb.b);
-		SDL_SetRenderDrawColor(rend, rgb.r * darkness, rgb.g * darkness, rgb.b * darkness, 255);
+		SDL_SetRenderDrawColor(rend, rgb.r * darkness, rgb.g * darkness,
+			rgb.b * darkness, 255);
 		SDL_RenderFillRect(rend, line);
 	}
 	if (!env->texture)
 		SDL_RenderFillRect(rend, line);
 }
 
-void wall_with_texture(SDL_Renderer *rend, t_ray *r, t_texture *t)
+void	wall_with_texture(SDL_Renderer *rend, t_ray *r, t_texture *t)
 {
-	t_color c;
-	float darkness;
-	SDL_Color rgb;
-	unsigned int data;
+	t_color			c;
+	float			darkness;
+	SDL_Color		rgb;
+	unsigned int	data;
 
-	darkness = range_conversion_val((t_pnt){cellS * 24, 0}, (t_pnt){0, 1}, r->dist);
+	darkness = range_conversion_val((t_pnt){cellS * 24, 0},
+			(t_pnt){0, 1}, r->dist);
 	if (t->num == 2)
 		r->shade = 1;
 	data = getpixel((t->img), (int)(t->tx), (int)(t->ty));
 	SDL_GetRGB(data, (t->img)->format, &rgb.r, &rgb.g, &rgb.b);
-	c = (t_color){rgb.r * r->shade * darkness, rgb.g * r->shade * darkness, rgb.b * r->shade * darkness};
+	c = (t_color){rgb.r * r->shade * darkness, rgb.g * r->shade * darkness,
+		rgb.b * r->shade * darkness};
 	color_fix(&c);
 	SDL_SetRenderDrawColor(rend, c.red, c.green, c.blue, 255);
 }
 
-void rend_wall(SDL_Renderer *rend, t_ray *r, t_texture *t, double line_h, t_envirenment *env, SDL_Rect *line)
+void	rend_wall(SDL_Renderer *rend, t_ray *r, t_texture *t, double line_h, t_envirenment *env, SDL_Rect *line)
 {
-	int y;
-	
+	int	y;
+
 	y = 0;
 	while (y < line_h)
 	{

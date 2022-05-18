@@ -12,7 +12,7 @@
 
 #include "wolf3d.h"
 
-void texture_cords(t_texture *t, t_ray *r, float *line_h)
+void	texture_cords(t_texture *t, t_ray *r, float *line_h)
 {
 	t->ty_step = (t->img)->w / (float)*line_h;
 	t->ty_offset = 0;
@@ -20,72 +20,73 @@ void texture_cords(t_texture *t, t_ray *r, float *line_h)
 	{
 		t->ty_offset = (*line_h - W_H) / 2.0;
 		*line_h = W_H;
-	}
+	}	
 	if (*line_h <= 0)
 		*line_h = 1;
-	
-	t->ty = t->ty_offset * t->ty_step;	
-	t->scaling=(float)(t->img)->w/cellS;
+	t->ty = t->ty_offset * t->ty_step;
+	t->scaling = (float)(t->img)->w / cellS;
 	if (r->shade == 1)
 	{
-		t->tx = (int)(r->rx*t->scaling)%(t->img)->w;
+		t->tx = (int)(r->rx * t->scaling) % (t->img)->w;
 		if (r->ra > PI)
-			t->tx=((t->img)->w-1)-t->tx;
+			t->tx = ((t->img)->w - 1) - t->tx;
 	}
 	else
 	{
-		t->tx = (int)(r->ry*t->scaling)%(t->img)->w;
-		if (r->ra > PI/2 && r->ra < (3*PI)/2)
-			t->tx=((t->img)->w-1)-t->tx;
+		t->tx = (int)(r->ry * t->scaling) % (t->img)->w;
+		if (r->ra > PI / 2 && r->ra < (3 * PI) / 2)
+			t->tx = ((t->img)->w - 1) - t->tx;
 	}
 }
 
-void horizontal_direction(t_ray *ray, t_rend_vars *v, t_player *player, t_envirenment *env)
+void	horizontal_direction(t_ray *ray, t_rend_vars *v, t_player *player, t_envirenment *env)
 {
+	float	a_tan;
+
 	if (ray->ra != 0. && ray->ra != PI)
+	{
+		a_tan = 1 / (tan(ray->ra));
+		if (ray->ra < PI)
 		{
-			float aTan = 1/(tan(ray->ra));
-			if (ray->ra < PI) //look up
-			{
-				ray->ry = (((int)(player->y) / cellS) * cellS - 0.0001);
-				ray->rx = player->x - (ray->ry - player->y)*aTan;
-				ray->yo = -(cellS);
-				ray->xo = -ray->yo*aTan;
-			}
-			if (ray->ra > PI) //look down
-			{
-				ray->ry = (((int)(player->y) / cellS) * cellS) + cellS;
-				ray->rx = player->x - (ray->ry - player->y)*aTan;
-				ray->yo = cellS;
-				ray->xo = -ray->yo*aTan;
-			}
+			ray->ry = (((int)(player->y) / cellS) * cellS - 0.0001);
+			ray->rx = player->x - (ray->ry - player->y) * a_tan;
+			ray->yo = -(cellS);
+			ray->xo = -ray->yo * a_tan;
 		}
-		else //look rigth or left
+		if (ray->ra > PI)
 		{
-			ray->rx = player->x;
-			ray->ry = player->y;
-			v->dof = env->map_size;
+			ray->ry = (((int)(player->y) / cellS) * cellS) + cellS;
+			ray->rx = player->x - (ray->ry - player->y) * a_tan;
+			ray->yo = cellS;
+			ray->xo = -ray->yo * a_tan;
 		}
+	}
+	else
+	{
+		ray->rx = player->x;
+		ray->ry = player->y;
+		v->dof = env->map_size;
+	}
 }
 
-void vertical_direction(t_ray *ray, t_rend_vars *v, t_player *player, t_envirenment *env)
+void	vertical_direction(t_ray *ray, t_rend_vars *v, t_player *player, t_envirenment *env)
 {
-	float aTan;
+	float	a_tan;
 
-	aTan = (tan(ray->ra));
-	if (ray->ra > PI/2 && ray->ra < (3*PI)/2)
+	a_tan = tan(ray->ra);
+	if (ray->ra > PI / 2 && ray->ra < (3 * PI) / 2)
 	{
 		ray->rx = (((int)(player->x) / cellS) * cellS - 0.0001);
-		ray->ry = player->y - (ray->rx - player->x)*aTan;
+		ray->ry = player->y - (ray->rx - player->x) * a_tan;
 		ray->xo = -(cellS);
-		ray->yo = -ray->xo*aTan;
+		ray->yo = -ray->xo * a_tan;
 	}
-	if (ray->ra < PI/2 || ray->ra > (3*PI)/2)
+	if (ray->ra < PI / 2 || ray->ra > (3 * PI) / 2)
 	{
 		ray->rx = (((int)(player->x) / cellS) * cellS) + cellS;
-		ray->ry = player->y - (ray->rx - player->x)*aTan;
+		ray->ry = player->y - (ray->rx - player->x) * a_tan;
 		ray->xo = cellS;
-		ray->yo = -ray->xo*aTan;
+		ray->yo = -ray->xo * a_tan;
 	}
 	if (ray->ra == 0. || ray->ra == PI)
 	{
@@ -95,17 +96,16 @@ void vertical_direction(t_ray *ray, t_rend_vars *v, t_player *player, t_envirenm
 	}
 }
 
-void render_view(t_envirenment *env, t_player *player, t_ray r, t_texture t)
+void	render_view(t_envirenment *env, t_player *player, t_ray r, t_texture t)
 {
-	float line_h;
-	SDL_Rect line;
-	int y;
+	float		line_h;
+	SDL_Rect	line;
+	int			y;
 
-	line.w = W_W/numRays;
-	line.x = r.num*line.w;
+	line.w = W_W / numRays;
+	line.x = r.num * line.w;
 	line.h = 1;
-	
-	line_h = (WALL_H * 220) / r.dist; //220 how player far to screen
+	line_h = (WALL_H * 220) / r.dist;
 	select_texture(&t, env->walls, env->quit, env->doors, env);
 	texture_cords(&t, &r, &line_h);
 	rend_wall(env->rend, &r, &t, line_h, env, &line);
@@ -118,7 +118,7 @@ void render_view(t_envirenment *env, t_player *player, t_ray r, t_texture t)
 	}
 }
 
-void closer_line(SDL_Renderer *rend, t_ray *ray, t_texture *tex)
+void	closer_line(SDL_Renderer *rend, t_ray *ray, t_texture *tex)
 {
 	if (ray->dist_v < ray->dist_h)
 	{
@@ -127,7 +127,7 @@ void closer_line(SDL_Renderer *rend, t_ray *ray, t_texture *tex)
 		ray->rx = ray->vx;
 		ray->ry = ray->vy;
 		ray->dist = ray->dist_v;
-		if((ray->ra >= PI/2 && ray->ra <= (3*PI)/2))
+		if (ray->ra >= PI / 2 && ray->ra <= (3 * PI) / 2)
 			SDL_SetRenderDrawColor(rend, 0, 0, 150, 255);
 		else
 			SDL_SetRenderDrawColor(rend, 0, 150, 0, 255);
