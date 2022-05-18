@@ -53,10 +53,7 @@ void	in_screen_2_suiv(t_env *env, t_player *player)
 	{
 		SDL_RenderCopy(env->rend, env->t.tx_damage_sc,
 			&env->rd.rect_damage_sc_s, &env->rd.rect_damage_sc_d);
-		ft_putendl("yes");
 	}
-	else
-		ft_putendl("ba");
 }
 
 void	in_screen_2(t_env *env, t_player *player)

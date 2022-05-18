@@ -74,7 +74,6 @@ void	player_damage_lose(t_player *player, t_obj *osp, t_env *env)
 {
 	if (distance(player->x, player->y, osp->x, osp->y) < 12 && osp->alive)
 	{
-		ft_putendl("ko");
 		player->damaged = SDL_TRUE;
 		player->blood--;
 		player->life = (SDL_Rect){40, W_H - 32, player->blood, 5};
