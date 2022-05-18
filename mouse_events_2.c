@@ -6,13 +6,13 @@
 /*   By: amya <amya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 18:39:02 by yzemmour          #+#    #+#             */
-/*   Updated: 2022/05/17 17:46:41 by amya             ###   ########.fr       */
+/*   Updated: 2022/05/18 12:10:19 by amya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void	right_spot(SDL_MouseButtonEvent b, t_envirenment *env)
+void	right_spot(SDL_MouseButtonEvent b, t_env *env)
 {
 	if (b.y >= (W_H / 6 * 0) + (12 * 1) && b.y
 		<= (W_H / 6 * 0) + (12 * 1) + W_H / 6)
@@ -25,7 +25,7 @@ void	right_spot(SDL_MouseButtonEvent b, t_envirenment *env)
 		env->options_pupop_showed = 1;
 }
 
-void	menu_buttons_press(SDL_MouseButtonEvent b, t_envirenment *env, t_player *player, t_obj *ob_sprites, SDL_Texture **tx_sprites)
+void	menu_buttons_press(SDL_MouseButtonEvent b, t_env *env, t_player *player)
 {
 	if (b.button == SDL_BUTTON_LEFT)
 	{
@@ -39,7 +39,7 @@ void	menu_buttons_press(SDL_MouseButtonEvent b, t_envirenment *env, t_player *pl
 			if (b.y >= (W_H / 6 * 2) + (12 * 3) && b.y
 				<= (W_H / 6 * 2) + (12 * 3) + W_H / 6)
 			{
-				sprites_reset(ob_sprites, tx_sprites, env);
+				sprites_reset(env->ob_sprites, env->tx_sprites, env);
 				env_reset(env);
 				player_reset(player);
 				env->screen = 2;
@@ -48,7 +48,7 @@ void	menu_buttons_press(SDL_MouseButtonEvent b, t_envirenment *env, t_player *pl
 	}
 }
 
-void	back_btn_press(SDL_MouseButtonEvent b, t_envirenment *env, t_player *player)
+void	back_btn_press(SDL_MouseButtonEvent b, t_env *env, t_player *player)
 {
 	if (b.button == SDL_BUTTON_LEFT)
 	{
@@ -63,7 +63,7 @@ void	back_btn_press(SDL_MouseButtonEvent b, t_envirenment *env, t_player *player
 	}
 }
 
-void	replay_press(SDL_MouseButtonEvent b, t_envirenment *env)
+void	replay_press(SDL_MouseButtonEvent b, t_env *env)
 {
 	if (b.button == SDL_BUTTON_LEFT && env->screen == 5)
 		env_reset(env);

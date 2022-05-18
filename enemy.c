@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   enemy.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yzemmour <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amya <amya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 10:05:19 by yzemmour          #+#    #+#             */
-/*   Updated: 2022/05/16 10:05:21 by yzemmour         ###   ########.fr       */
+/*   Updated: 2022/05/18 12:19:40 by amya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void	enemy_movement(t_envirenment *env, t_player *player, t_obj *ob_sprites)
+void	enemy_movement(t_env *env, t_player *player, t_obj *ob_sprites)
 {
 	t_var_int	vars;
 
@@ -27,21 +27,21 @@ void	enemy_movement(t_envirenment *env, t_player *player, t_obj *ob_sprites)
 		&& ob_sprites->alive)
 	{
 		if (ob_sprites->x > player->x
-			&& env->map[vars.ipy * env->map_size + vars.ipx_sub_x0] == 0)
+			&& env->map[vars.ipy * env->mps + vars.ipx_sub_x0] == 0)
 			ob_sprites->x -= 0.7;
 		if (ob_sprites->x < player->x
-			&& env->map[vars.ipy * env->map_size + vars.ipx_add_x0] == 0)
+			&& env->map[vars.ipy * env->mps + vars.ipx_add_x0] == 0)
 			ob_sprites->x += 0.7;
 		if (ob_sprites->y > player->y
-			&& env->map[vars.ipy_sub_y0 * env->map_size + vars.ipx] == 0)
+			&& env->map[vars.ipy_sub_y0 * env->mps + vars.ipx] == 0)
 			ob_sprites->y -= 0.7;
 		if (ob_sprites->y < player->y
-			&& env->map[vars.ipy_add_y0 * env->map_size + vars.ipx] == 0)
+			&& env->map[vars.ipy_add_y0 * env->mps + vars.ipx] == 0)
 			ob_sprites->y += 0.7;
 	}
 }
 
-void	enemy_collis_2(t_obj *enmy, t_obj *ob_sprts, t_envirenment *env, int s)
+void	enemy_collis_2(t_obj *enmy, t_obj *ob_sprts, t_env *env, int s)
 {
 	if (enmy->x < ob_sprts[s].x && enmy->y < ob_sprts[s].y)
 	{
@@ -65,7 +65,7 @@ void	enemy_collis_2(t_obj *enmy, t_obj *ob_sprts, t_envirenment *env, int s)
 	}
 }
 
-void	enemy_collision(t_obj *enemy, t_obj *ob_sprites, t_envirenment *env)
+void	enemy_collision(t_obj *enemy, t_obj *ob_sprites, t_env *env)
 {
 	int	s;
 
@@ -81,7 +81,7 @@ void	enemy_collision(t_obj *enemy, t_obj *ob_sprites, t_envirenment *env)
 	}
 }
 
-void	enemy_animation(t_player *player, t_obj *ob_sprites, t_envirenment *env)
+void	enemy_animation(t_player *player, t_obj *ob_sprites, t_env *env)
 {
 	ob_sprites->fps--;
 	if (ob_sprites->fps == 0)
@@ -105,7 +105,7 @@ void	enemy_animation(t_player *player, t_obj *ob_sprites, t_envirenment *env)
 }
 
 void	enemy_damage_die(t_player *player, t_obj *ob_sprites,
-	t_envirenment *env, t_pnt p)
+	t_env *env, t_pnt p)
 {
 	if (player->is_shoot)
 	{

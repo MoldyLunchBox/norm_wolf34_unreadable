@@ -6,7 +6,7 @@
 /*   By: amya <amya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 19:14:16 by yzemmour          #+#    #+#             */
-/*   Updated: 2022/05/17 10:00:27 by amya             ###   ########.fr       */
+/*   Updated: 2022/05/18 12:19:40 by amya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	color_fix(t_color *c)
 		c->blue = 0;
 }
 
-void	safe_map(t_player *player, float pdx, float pdy, t_envirenment *env)
+void	safe_map(t_player *player, float pdx, float pdy, t_env *env)
 {	
 	t_var_int	vars;
 
@@ -93,10 +93,10 @@ void	safe_map(t_player *player, float pdx, float pdy, t_envirenment *env)
 	vars.ipy = player->y / cellS;
 	vars.ipy_add_y0 = (player->y + vars.y0) / cellS;
 	vars.ipy_sub_y0 = (player->y - vars.y0) / cellS;
-	if ((vars.ipy * env->map_size + vars.ipx_add_x0 != 0
-			&& env->map[vars.ipy * env->map_size + vars.ipx_add_x0] == 0))
+	if ((vars.ipy * env->mps + vars.ipx_add_x0 != 0
+			&& env->map[vars.ipy * env->mps + vars.ipx_add_x0] == 0))
 		player->x += pdx * player->speed;
-	if ((vars.ipy_add_y0 * env->map_size + vars.ipx != 0
-			&& env->map[vars.ipy_add_y0 * env->map_size + vars.ipx] == 0))
+	if ((vars.ipy_add_y0 * env->mps + vars.ipx != 0
+			&& env->map[vars.ipy_add_y0 * env->mps + vars.ipx] == 0))
 		player->y += pdy * player->speed;
 }

@@ -6,7 +6,7 @@
 /*   By: amya <amya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 10:18:39 by yzemmour          #+#    #+#             */
-/*   Updated: 2022/05/17 10:04:29 by amya             ###   ########.fr       */
+/*   Updated: 2022/05/18 12:10:19 by amya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	draw_square(SDL_Renderer *rend, int size, int x, int y)
 	}
 }
 
-void	cursor_mouse(t_envirenment *env)
+void	cursor_mouse(t_env *env)
 {
 	if (env->screen == 2 && env->cursor)
 		SDL_ShowCursor(SDL_DISABLE);

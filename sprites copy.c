@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sprites.c                                          :+:      :+:    :+:   */
+/*   sprites copy.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amya <amya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 18:51:01 by yzemmour          #+#    #+#             */
-/*   Updated: 2022/05/17 15:42:49 by amya             ###   ########.fr       */
+/*   Updated: 2022/05/18 12:10:19 by amya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	init_obj(t_obj *obj, t_vars_obj vars_obj, SDL_Texture *texture)
 	obj->dist_to_player = 15;
 }
 
-void	sprites_reset(t_obj *ob_sprites, SDL_Texture **tx_sprites, t_envirenment *env)
+void	sprites_reset(t_obj *ob_sprites, SDL_Texture **tx_sprites, t_env *env)
 {
 	int s;
 
@@ -92,7 +92,7 @@ void	sprites_reset(t_obj *ob_sprites, SDL_Texture **tx_sprites, t_envirenment *e
 	init_obj(&ob_sprites[37], (t_vars_obj){17*cellS+10, 14*cellS+10, 820, 1694, 1, 2, 1, 0, 820, 1}, tx_sprites[0]);
 }
 
-void sprite_in_vision(SDL_Renderer *rend, t_player *player, t_obj *ob_sprites, t_envirenment *env, float diff_angles)
+void sprite_in_vision(SDL_Renderer *rend, t_player *player, t_obj *ob_sprites, t_env *env, float diff_angles)
 {
 	SDL_Rect rect0;
 	SDL_Rect rect1;
@@ -140,7 +140,7 @@ void	sort_sprites(t_obj *ob_sprites, int num_sp)
     }
 }
 
-void	update_sprites(t_player *player, t_obj *ob_sprites, t_envirenment *env)
+void	update_sprites(t_player *player, t_obj *ob_sprites, t_env *env)
 {
 	int i;
 

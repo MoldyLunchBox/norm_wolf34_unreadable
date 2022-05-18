@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   screens.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yzemmour <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amya <amya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 18:56:00 by yzemmour          #+#    #+#             */
-/*   Updated: 2022/05/15 18:56:01 by yzemmour         ###   ########.fr       */
+/*   Updated: 2022/05/18 12:10:19 by amya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void	in_screen_1(t_envirenment *env, t_decor_texture *t, t_rect_decor *rd)
+void	in_screen_1(t_env *env, t_decor_texture *t, t_rect_decor *rd)
 {
 	if (env->screen == 1)
 	{
@@ -31,14 +31,14 @@ void	in_screen_1(t_envirenment *env, t_decor_texture *t, t_rect_decor *rd)
 		Mix_PauseMusic();
 	if (env->options_pupop_showed == 1)
 	{
-		SDL_RenderCopy(env->rend, env->t.tx_options_pupop,
+		SDL_RenderCopy(env->rend, env->t.tx_ops_pupop,
 			&env->rd.rect_options_pupop_s, &env->rd.rect_options_pupop_d);
 		SDL_RenderCopy(env->rend, env->t.tx_close_btn,
 			&env->rd.rect_close_btn_s, &env->rd.rect_close_btn_d);
 	}
 }
 
-void	in_screen_2_suiv(t_envirenment *env, t_player *player)
+void	in_screen_2_suiv(t_env *env, t_player *player)
 {
 	SDL_SetRenderDrawColor(env->rend, 255, 255, 255, 255);
 	SDL_RenderFillRect(env->rend, &env->rd.life_border);
@@ -54,7 +54,7 @@ void	in_screen_2_suiv(t_envirenment *env, t_player *player)
 			&env->rd.rect_damage_sc_s, &env->rd.rect_damage_sc_d);
 }
 
-void	in_screen_2(t_envirenment *env, t_player *player)
+void	in_screen_2(t_env *env, t_player *player)
 {
 	if (env->screen == 2)
 	{
@@ -80,7 +80,7 @@ void	in_screen_2(t_envirenment *env, t_player *player)
 	}
 }
 
-void	in_screen_3(t_envirenment *env)
+void	in_screen_3(t_env *env)
 {
 	if (env->screen == 3)
 	{
@@ -107,12 +107,12 @@ void	in_screen_3(t_envirenment *env)
 	}
 }
 
-void	in_screen_4_5(t_envirenment *env, t_player *player)
+void	in_screen_4_5(t_env *env, t_player *player)
 {
 	if (env->screen == 4)
 	{
 		SDL_RenderClear(env->rend);
-		SDL_RenderCopy(env->rend, env->t.tx_rust_code_sc,
+		SDL_RenderCopy(env->rend, env->t.tx_code_sc,
 			&env->rd.rect_rust_code_sc_s, &env->rd.rect_rust_code_sc_d);
 		SDL_RenderCopy(env->rend, env->t.tx_back_btn,
 			&env->rd.rect_back_btn_s, &env->rd.rect_back_btn_d);

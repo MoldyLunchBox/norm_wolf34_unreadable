@@ -6,7 +6,7 @@
 /*   By: amya <amya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 09:51:55 by yzemmour          #+#    #+#             */
-/*   Updated: 2022/05/17 17:14:07 by amya             ###   ########.fr       */
+/*   Updated: 2022/05/18 12:10:19 by amya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_pnt	movement(t_player *player)
 	return (p);
 }
 
-void	hit_sprites(t_player *player, t_obj *ob_sprites, t_envirenment *env)
+void	hit_sprites(t_player *player, t_obj *ob_sprites, t_env *env)
 {
 	int	s;
 
@@ -70,7 +70,7 @@ void	hit_sprites(t_player *player, t_obj *ob_sprites, t_envirenment *env)
 	}
 }
 
-void	player_damage_lose(t_player *player, t_obj *osp, t_envirenment *env)
+void	player_damage_lose(t_player *player, t_obj *osp, t_env *env)
 {
 	if (distance(player->x, player->y, osp->x, osp->y) < 12 && osp->alive)
 	{

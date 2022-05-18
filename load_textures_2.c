@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   load_textures_2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yzemmour <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amya <amya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 18:17:51 by yzemmour          #+#    #+#             */
-/*   Updated: 2022/05/15 18:17:55 by yzemmour         ###   ########.fr       */
+/*   Updated: 2022/05/18 12:10:19 by amya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void	load_sprites_tex(t_envirenment *env, SDL_Texture **tx_sprites)
+void	load_sprites_tex(t_env *env, SDL_Texture **tx_sprites)
 {
 	tx_sprites[0] = SDL_CreateTextureFromSurface(env->rend, env->sprites[0]);
 	tx_sprites[1] = SDL_CreateTextureFromSurface(env->rend, env->sprites[1]);
@@ -46,7 +46,7 @@ void	load_decoration(t_decoration_surface *s)
 	s->damage_sc = IMG_Load("resources/images/decoration/damage_sc.png");
 }
 
-void	create_decoration_texture(t_envirenment *env, t_decor_texture *t,
+void	create_decoration_texture(t_env *env, t_decor_texture *t,
 	t_decoration_surface s)
 {
 	t->tx_icon_coin = SDL_CreateTextureFromSurface(env->rend, s.coin);
@@ -60,9 +60,9 @@ void	create_decoration_texture(t_envirenment *env, t_decor_texture *t,
 	t->tx_heart = SDL_CreateTextureFromSurface(env->rend, s.heart);
 	t->tx_menu_sc = SDL_CreateTextureFromSurface(env->rend, s.menu_sc);
 	t->tx_menu_btns = SDL_CreateTextureFromSurface(env->rend, s.menu_btns);
-	t->tx_options_pupop = SDL_CreateTextureFromSurface(env->rend, s.options_pupop);
+	t->tx_ops_pupop = SDL_CreateTextureFromSurface(env->rend, s.options_pupop);
 	t->tx_close_btn = SDL_CreateTextureFromSurface(env->rend, s.close_btn);
-	t->tx_rust_code_sc = SDL_CreateTextureFromSurface(env->rend, s.rust_code_sc);
+	t->tx_code_sc = SDL_CreateTextureFromSurface(env->rend, s.rust_code_sc);
 	t->tx_back_btn = SDL_CreateTextureFromSurface(env->rend, s.back_btn);
 	t->tx_calculator = SDL_CreateTextureFromSurface(env->rend, s.calculator);
 	t->tx_lose_sc = SDL_CreateTextureFromSurface(env->rend, s.lose_sc);

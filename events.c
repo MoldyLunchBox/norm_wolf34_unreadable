@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yzemmour <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amya <amya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 18:26:38 by yzemmour          #+#    #+#             */
-/*   Updated: 2022/05/15 18:26:41 by yzemmour         ###   ########.fr       */
+/*   Updated: 2022/05/18 12:10:19 by amya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void	key_down_event(t_envirenment *env, SDL_Event e)
+void	key_down_event(t_env *env, SDL_Event e)
 {
 	if (e.key.keysym.sym == SDLK_ESCAPE)
 		env->is_run = SDL_FALSE;
@@ -36,7 +36,7 @@ void	key_down_event(t_envirenment *env, SDL_Event e)
 		env->cursor = !env->cursor;
 }
 
-void	mouse_event(t_envirenment *env, t_player *player, SDL_Event e, t_obj *ob_sprites, SDL_Texture **tx_sprites)
+void	mouse_event(t_env *env, t_player *player, SDL_Event e)
 {
 	if (env->screen == 2)
 	{
@@ -50,12 +50,12 @@ void	mouse_event(t_envirenment *env, t_player *player, SDL_Event e, t_obj *ob_sp
 	quit_press(e.button, env);
 	menu_icon_press(e.button, env);
 	close_btn_press(e.button, env);
-	menu_buttons_press(e.button, env, player, ob_sprites, tx_sprites);
+	menu_buttons_press(e.button, env, player);
 	back_btn_press(e.button, env, player);
 	replay_press(e.button, env);
 }
 
-void	event(SDL_Event e, t_envirenment *env, t_player *player)
+void	event(SDL_Event e, t_env *env, t_player *player)
 {
 	if (e.type == SDL_QUIT)
 		env->is_run = SDL_FALSE;
@@ -70,7 +70,7 @@ void	event(SDL_Event e, t_envirenment *env, t_player *player)
 		env->mouse_y = e.motion.y;
 	}
 	if (e.type == SDL_MOUSEBUTTONDOWN)
-		mouse_event(env, player, e, env->ob_sprites, env->tx_sprites);
+		mouse_event(env, player, e);
 	if (e.type == SDL_KEYDOWN)
 		key_down_event(env, e);
 	if (e.type == SDL_KEYUP)

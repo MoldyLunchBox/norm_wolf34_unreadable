@@ -6,7 +6,7 @@
 /*   By: amya <amya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 17:18:41 by amya              #+#    #+#             */
-/*   Updated: 2022/05/17 15:48:44 by amya             ###   ########.fr       */
+/*   Updated: 2022/05/18 12:10:19 by amya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ float	dtor(float d)
 	return (d * PI / 180.0f);
 }
 
-void	wr(t_envirenment *env, char *str, t_p pos)
+void	wr(t_env *env, char *str, t_p pos)
 {
 	SDL_Color		color;
 	SDL_Surface		*surface_message;
@@ -36,7 +36,7 @@ void	wr(t_envirenment *env, char *str, t_p pos)
 	SDL_DestroyTexture(message);
 }
 
-void	fadding(t_envirenment *env)
+void	fadding(t_env *env)
 {
 	SDL_Rect	r;
 

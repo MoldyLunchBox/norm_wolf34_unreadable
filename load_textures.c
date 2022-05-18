@@ -6,13 +6,13 @@
 /*   By: amya <amya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 17:25:14 by amya              #+#    #+#             */
-/*   Updated: 2022/05/15 17:25:22 by amya             ###   ########.fr       */
+/*   Updated: 2022/05/18 12:10:19 by amya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void	load_walls(t_envirenment *env)
+void	load_walls(t_env *env)
 {
 	env->walls[0] = IMG_Load("resources/images/walls/wall.png");
 	env->walls[1] = IMG_Load("resources/images/walls/wall_code.png");
@@ -34,7 +34,7 @@ void	load_walls(t_envirenment *env)
 	env->quit[3] = IMG_Load("resources/images/walls/quit4.png");
 }
 
-void	load_doors(t_envirenment *env)
+void	load_doors(t_env *env)
 {
 	env->doors[0] = IMG_Load("resources/images/doors/door.png");
 	env->doors[1] = IMG_Load("resources/images/doors/door1.png");
@@ -45,7 +45,7 @@ void	load_doors(t_envirenment *env)
 	env->doors[6] = IMG_Load("resources/images/doors/door6.png");
 }
 
-void	load_shoots(t_envirenment *env)
+void	load_shoots(t_env *env)
 {
 	env->shoots[0] = IMG_Load("resources/images/shoot/shoot1.png");
 	env->shoots[1] = IMG_Load("resources/images/shoot/shoot2.png");
@@ -58,7 +58,7 @@ void	load_shoots(t_envirenment *env)
 	env->shoots[8] = IMG_Load("resources/images/shoot/shoot9.png");
 }
 
-void	load_sprites(t_envirenment *env)
+void	load_sprites(t_env *env)
 {
 	env->sprites[0] = IMG_Load("resources/images/sprites/pillar.png");
 	env->sprites[1] = IMG_Load("resources/images/sprites/trash.png");

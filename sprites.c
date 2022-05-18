@@ -6,7 +6,7 @@
 /*   By: amya <amya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 18:51:01 by yzemmour          #+#    #+#             */
-/*   Updated: 2022/05/17 16:48:08 by amya             ###   ########.fr       */
+/*   Updated: 2022/05/18 14:26:53 by amya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	init_obj(t_obj *obj, t_vars_obj vars_obj, SDL_Texture *texture)
 	obj->dist_to_player = 15;
 }
 
-void	sprite_in_vision(SDL_Renderer *rend, t_player *player, t_obj *o_s, t_envirenment *env, float dif)
+void	sprite_in_vision(t_player *player, t_obj *o_s, t_env *env, float dif)
 {
 	t_rec		rec;
 	t_sp_vision	vars;
@@ -52,7 +52,7 @@ void	sprite_in_vision(SDL_Renderer *rend, t_player *player, t_obj *o_s, t_envire
 		if (o_s->dist_to_player < player->dist[vars.j])
 		{
 			init_rect_sprite(o_s, &rec, &vars);
-			SDL_RenderCopyEx(rend, o_s->texture,
+			SDL_RenderCopyEx(env->rend, o_s->texture,
 				&rec.rect0, &rec.rect1, 0, NULL, SDL_FLIP_NONE);
 		}
 		vars.j++;
@@ -81,7 +81,15 @@ void	sort_sprites(t_obj *ob_sprites, int num_sp)
 	}
 }
 
-void	update_sprites(t_player *player, t_obj *ob_sprites, t_envirenment *env)
+void	sprites2(t_player *player, t_obj *ob_sprites, t_env *env, int i)
+{
+	enemy_movement(env, player, &ob_sprites[i]);
+	enemy_collision(&ob_sprites[i], ob_sprites, env);
+	enemy_animation(player, &ob_sprites[i], env);
+	player_damage_lose(player, &ob_sprites[i], env);
+}
+
+void	update_sprites(t_player *player, t_obj *ob_sprites, t_env *env)
 {
 	int		i;
 	float	dist;
@@ -90,12 +98,7 @@ void	update_sprites(t_player *player, t_obj *ob_sprites, t_envirenment *env)
 	while (i < env->num_sprites)
 	{
 		if (ob_sprites[i].state == 2)
-		{
-			enemy_movement(env, player, &ob_sprites[i]);
-			enemy_collision(&ob_sprites[i], ob_sprites, env);
-			enemy_animation(player, &ob_sprites[i], env);
-			player_damage_lose(player, &ob_sprites[i], env);
-		}
+			sprites2(player, ob_sprites, env, i);
 		if (ob_sprites[i].state == 3)
 			coin_collect(player, &ob_sprites[i], env);
 		if (ob_sprites[i].state == 4)

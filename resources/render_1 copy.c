@@ -6,69 +6,66 @@
 /*   By: amya <amya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 19:07:26 by yzemmour          #+#    #+#             */
-/*   Updated: 2022/05/18 14:44:28 by amya             ###   ########.fr       */
+/*   Updated: 2022/05/18 12:22:33 by amya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void	init_map_line(t_env *env, t_ray *ray, t_rend_vars *v)
+void	vertical_line(t_env *env, t_rend_vars *v, t_player *p)
 {
-	v->mx = (int)(ray->rx) / cellS;
-	v->my = (int)(ray->ry) / cellS;
-	v->mp = v->my * env->mps + v->mx;
-}
-
-void	vertical_line(t_env *env, t_ray *ray, t_texture *tex, t_player *player)
-{
-	env->v.dof = 0;
-	ray->dist_v = 100000;
-	ray->vx = player->x;
-	ray->vy = player->y;
-	v_direction(ray, &env->v, player, env);
-	while (env->v.dof < env->mps)
+	v->dof = 0;
+	env->ray->dist_v = 100000;
+	env->ray->vx = p->x;
+	env->ray->vy = p->y;
+	v_direction(env->ray, v, p, env);
+	while (v->dof < env->mps)
 	{
-		init_map_line(env, ray, &env->v);
-		if (env->v.mp > 0 && env->v.mp < env->mps * env->mps && env->map[env->v.mp] >= 1)
+		v->mx = (int)(env->ray->rx) / cellS;
+		v->my = (int)(env->ray->ry) / cellS;
+		v->mp = v->my * env->mps + v->mx;
+		if (v->mp > 0 && v->mp < env->mps * env->mps && env->map[v->mp] >= 1)
 		{
-			ray->vx = ray->rx;
-			ray->vy = ray->ry;
-			ray->dist_v = distance(player->x, player->y, ray->vx, ray->vy);
-			env->v.dof = env->mps;
-			tex->vmt = env->map[env->v.mp];
+			env->ray->vx = env->ray->rx;
+			env->ray->vy = env->ray->ry;
+			env->ray->dist_v = distance(p->x, p->y, env->ray->vx, env->ray->vy);
+			v->dof = env->mps;
+			env->tex->vmt = env->map[v->mp];
 		}	
 		else
 		{
-			ray->rx += ray->xo;
-			ray->ry += ray->yo;
-			env->v.dof += 1;
+			env->ray->rx += env->ray->xo;
+			env->ray->ry += env->ray->yo;
+			v->dof += 1;
 		}
 	}
 }
 
-void	horizontal_line(t_env *env, t_ray *ray, t_texture *tex, t_player *player)
+void	horizontal_line(t_env *env, t_rend_vars *v, t_player *p)
 {
-	env->v.dof = 0;
-	ray->dist_h = 100000;
-	ray->hx = player->x;
-	ray->hy = player->y;
-	h_direction(ray, &env->v, player, env);
-	while (env->v.dof < env->mps)
+	v->dof = 0;
+	env->ray->dist_h = 100000;
+	env->ray->hx = p->x;
+	env->ray->hy = p->y;
+	h_direction(env->ray, v, p, env);
+	while (v->dof < env->mps)
 	{
-		init_map_line(env, ray, &env->v);
-		if (env->v.mp > 0 && env->v.mp < env->mps * env->mps && env->map[env->v.mp] >= 1)
+		v->mx = (int)(env->ray->rx) / cellS;
+		v->my = (int)(env->ray->ry) / cellS;
+		v->mp = v->my * env->mps + v->mx;
+		if (v->mp > 0 && v->mp < env->mps * env->mps && env->map[v->mp] >= 1)
 		{
-			ray->hx = ray->rx;
-			ray->hy = ray->ry;
-			ray->dist_h = distance(player->x, player->y, ray->hx, ray->hy);
-			env->v.dof = env->mps;
-			tex->hmt = env->map[env->v.mp];
+			env->ray->hx = env->ray->rx;
+			env->ray->hy = env->ray->ry;
+			env->ray->dist_h = distance(p->x, p->y, env->ray->hx, env->ray->hy);
+			v->dof = env->mps;
+			env->tex->hmt = env->map[v->mp];
 		}	
 		else
 		{
-			ray->rx += ray->xo;
-			ray->ry += ray->yo;
-			env->v.dof += 1;
+			env->ray->rx += env->ray->xo;
+			env->ray->ry += env->ray->yo;
+			v->dof += 1;
 		}
 	}
 }
@@ -87,8 +84,8 @@ void	render_rays(t_env *env, t_player *player)
 	while (ray.num < numRays)
 	{
 		ray.ra = safe_angle(ray.ra);
-		horizontal_line(env, &ray, &tex, player);
-		vertical_line(env, &ray, &tex, player);
+		horizontal_line(env, &v, player);
+		vertical_line(env, &v, player);
 		ray.shade = 1;
 		closer_line(env->rend, &ray, &tex);
 		ray.ca = safe_angle(player->a - ray.ra);

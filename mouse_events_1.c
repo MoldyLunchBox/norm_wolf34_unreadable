@@ -6,13 +6,13 @@
 /*   By: amya <amya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 18:35:37 by yzemmour          #+#    #+#             */
-/*   Updated: 2022/05/17 17:38:13 by amya             ###   ########.fr       */
+/*   Updated: 2022/05/18 12:10:19 by amya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void	sound_press(SDL_MouseButtonEvent b, t_envirenment *env)
+void	sound_press(SDL_MouseButtonEvent b, t_env *env)
 {
 	if (b.button == SDL_BUTTON_LEFT)
 	{
@@ -33,7 +33,7 @@ void	sound_press(SDL_MouseButtonEvent b, t_envirenment *env)
 	}
 }
 
-void	play_press(SDL_MouseButtonEvent b, t_envirenment *env)
+void	play_press(SDL_MouseButtonEvent b, t_env *env)
 {
 	SDL_Rect	r;
 
@@ -49,7 +49,7 @@ void	play_press(SDL_MouseButtonEvent b, t_envirenment *env)
 	}
 }
 
-void	quit_press(SDL_MouseButtonEvent b, t_envirenment *env)
+void	quit_press(SDL_MouseButtonEvent b, t_env *env)
 {
 	if (b.button == SDL_BUTTON_LEFT)
 	{
@@ -61,7 +61,7 @@ void	quit_press(SDL_MouseButtonEvent b, t_envirenment *env)
 	}
 }
 
-void	menu_icon_press(SDL_MouseButtonEvent b, t_envirenment *env)
+void	menu_icon_press(SDL_MouseButtonEvent b, t_env *env)
 {
 	if (b.button == SDL_BUTTON_LEFT)
 	{
@@ -75,7 +75,7 @@ void	menu_icon_press(SDL_MouseButtonEvent b, t_envirenment *env)
 	}
 }
 
-void	close_btn_press(SDL_MouseButtonEvent b, t_envirenment *env)
+void	close_btn_press(SDL_MouseButtonEvent b, t_env *env)
 {
 	if (b.button == SDL_BUTTON_LEFT)
 	{

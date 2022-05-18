@@ -6,7 +6,7 @@
 /*   By: amya <amya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 17:11:52 by amya              #+#    #+#             */
-/*   Updated: 2022/05/15 17:22:22 by amya             ###   ########.fr       */
+/*   Updated: 2022/05/18 12:19:40 by amya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	player_reset(t_player *player)
 	player->damaged = SDL_FALSE;
 }
 
-void	env_reset(t_envirenment *env)
+void	env_reset(t_env *env)
 {
 	env->is_run = SDL_TRUE;
 	env->code_valid = SDL_FALSE;
@@ -55,10 +55,10 @@ void	env_reset(t_envirenment *env)
 	env->enemy_num = 12;
 	if (env->door_position != -1)
 		env->map[env->door_position] = 2;
-	env->map_length = env->map_size * cellS;
+	env->map_length = env->mps * cellS;
 }
 
-void	init_game(t_envirenment *env, t_player *player)
+void	init_game(t_env *env, t_player *player)
 {
 	env_reset(env);
 	player_reset(player);
@@ -77,7 +77,7 @@ void	init_game(t_envirenment *env, t_player *player)
 	env->rend = SDL_CreateRenderer(env->window, -1, SDL_RENDERER_ACCELERATED);
 }
 
-void	init_sound_effect_2(t_envirenment *env)
+void	init_sound_effect_2(t_env *env)
 {
 	Mix_PlayMusic(env->music, -1);
 	Mix_PlayChannel(0, env->foots_sound, -1);
@@ -90,7 +90,7 @@ void	init_sound_effect_2(t_envirenment *env)
 	Mix_Pause(6);
 }
 
-void	init_sound_effect(t_envirenment *env)
+void	init_sound_effect(t_env *env)
 {
 	env->music = Mix_LoadMUS("resources/sounds/music.wav");
 	Mix_VolumeMusic(MIX_MAX_VOLUME / 4);

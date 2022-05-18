@@ -6,13 +6,13 @@
 /*   By: amya <amya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 19:00:30 by yzemmour          #+#    #+#             */
-/*   Updated: 2022/05/17 16:56:09 by amya             ###   ########.fr       */
+/*   Updated: 2022/05/18 12:19:40 by amya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void	update(t_player *player, t_obj *ob_sprites, t_envirenment *env)
+void	update(t_player *player, t_obj *ob_sprites, t_env *env)
 {
 	float	dx;
 	float	dy;
@@ -56,7 +56,7 @@ void	gun_animation(SDL_Renderer *rend, t_player *player, SDL_Surface **shots)
 		&rect_gun_d, 0, NULL, SDL_FLIP_NONE);
 }
 
-void	show_door_code(t_player *player, t_envirenment *env)
+void	show_door_code(t_player *player, t_env *env)
 {
 	t_var_int	vars;
 
@@ -65,12 +65,12 @@ void	show_door_code(t_player *player, t_envirenment *env)
 	vars.ipx_add_x0 = (player->x + vars.x0) / cellS;
 	vars.ipy = player->y / cellS;
 	vars.ipy_add_y0 = player->y / cellS;
-	if (env->map[vars.ipy_add_y0 * env->map_size + vars.ipx_add_x0]
+	if (env->map[vars.ipy_add_y0 * env->mps + vars.ipx_add_x0]
 		== 2 && env->code_valid == SDL_FALSE)
 		env->screen = 4;
 }
 
-void	open_door(t_envirenment *env)
+void	open_door(t_env *env)
 {
 	env->fps--;
 	if (env->fps == 0)
@@ -85,7 +85,7 @@ void	open_door(t_envirenment *env)
 	}
 }
 
-void	quit_animation(t_envirenment *env)
+void	quit_animation(t_env *env)
 {
 	env->fps_quit--;
 	if (env->fps_quit == 0)

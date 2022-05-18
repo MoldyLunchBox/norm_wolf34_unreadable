@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yzemmour <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amya <amya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 10:50:01 by yzemmour          #+#    #+#             */
-/*   Updated: 2022/05/16 10:50:02 by yzemmour         ###   ########.fr       */
+/*   Updated: 2022/05/18 12:10:19 by amya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	init_rect_decor(t_rect_decor *rd)
 	init_rect_decor2(rd);
 }
 
-void	run_game(t_envirenment *env, t_player *player)
+void	run_game(t_env *env, t_player *player)
 {
 	SDL_Event	e;
 
@@ -89,7 +89,7 @@ void	run_game(t_envirenment *env, t_player *player)
 
 int	main(int argc, char *argv[])
 {
-	t_envirenment			env;
+	t_env			env;
 	t_player				player;
 
 	parsing(&env, argv[1]);

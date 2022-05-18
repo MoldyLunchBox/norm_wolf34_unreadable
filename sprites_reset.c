@@ -6,13 +6,13 @@
 /*   By: amya <amya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/17 15:00:28 by amya              #+#    #+#             */
-/*   Updated: 2022/05/17 15:36:39 by amya             ###   ########.fr       */
+/*   Updated: 2022/05/18 12:10:19 by amya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void	aid_static(t_obj *osprites, SDL_Texture **tsprites, t_envirenment *env)
+void	aid_static(t_obj *osprites, SDL_Texture **tsprites, t_env *env)
 {
 	init_obj(&osprites[17], (t_vars_obj){2 * cellS + 10, 22 * cellS
 		+ 10, 223, 200, 4, 4, 4, 0, 223, 4}, tsprites[5]);
@@ -28,7 +28,7 @@ void	aid_static(t_obj *osprites, SDL_Texture **tsprites, t_envirenment *env)
 		295, 400, 1, 3, 3, 0, 295, 1}, tsprites[4]);
 }
 
-void	sprites_en(t_obj *osprites, SDL_Texture **tsprites, t_envirenment *env)
+void	sprites_en(t_obj *osprites, SDL_Texture **tsprites, t_env *env)
 {
 	init_obj(&osprites[5], (t_vars_obj){0 * cellS, 0 * cellS,
 		910, 1493, 2, 3, 2, 0, 910, 2}, tsprites[2]);
@@ -56,7 +56,7 @@ void	sprites_en(t_obj *osprites, SDL_Texture **tsprites, t_envirenment *env)
 		1493, 2, 3, 2, 8, 910, 2}, tsprites[2]);
 }
 
-void	sp_coin(t_obj *osprites, SDL_Texture **tsprites, t_envirenment *env)
+void	sp_coin(t_obj *osprites, SDL_Texture **tsprites, t_env *env)
 {
 	init_obj(&osprites[18], (t_vars_obj){9 * cellS + 10, 1 * cellS
 		+ 7, 512, 512, 3, 5, 5, 0, 512, 3}, tsprites[3]);
@@ -84,7 +84,7 @@ void	sp_coin(t_obj *osprites, SDL_Texture **tsprites, t_envirenment *env)
 		+ 37, 512, 512, 3, 5, 5, 0, 512, 3}, tsprites[3]);
 }
 
-void	coin_rest(t_obj *osprite, SDL_Texture **tsprite, t_envirenment *env)
+void	coin_rest(t_obj *osprite, SDL_Texture **tsprite, t_env *env)
 {
 	init_obj(&osprite[30], (t_vars_obj){9 * cellS + 10, 1 * cellS
 		+ 52, 512, 512, 3, 5, 5, 0, 512, 3}, tsprite[3]);
@@ -104,7 +104,7 @@ void	coin_rest(t_obj *osprite, SDL_Texture **tsprite, t_envirenment *env)
 		+ 10, 820, 1694, 1, 2, 1, 0, 820, 1}, tsprite[0]);
 }
 
-void	sprites_reset(t_obj *osprite, SDL_Texture **tsprite, t_envirenment *env)
+void	sprites_reset(t_obj *osprite, SDL_Texture **tsprite, t_env *env)
 {
 	int	s;
 

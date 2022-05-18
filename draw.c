@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yzemmour <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amya <amya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 09:54:35 by yzemmour          #+#    #+#             */
-/*   Updated: 2022/05/16 09:54:37 by yzemmour         ###   ########.fr       */
+/*   Updated: 2022/05/18 14:15:41 by amya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	draw_sky(SDL_Renderer *rend, SDL_Surface *sky, t_player *player)
 }
 
 void	draw_sprite(SDL_Renderer *rend, t_player *player,
-	t_obj *ob_sprites, t_envirenment *env)
+	t_obj *ob_sprites, t_env *env)
 {
 	int		i;
 	t_pnt	p;
@@ -64,14 +64,14 @@ void	draw_sprite(SDL_Renderer *rend, t_player *player,
 			diff_ang = fmodf((tmp_ang - target_ang) + PI + 2 * PI, 2 * PI) - PI;
 			diff_ang = safe_angle_180(diff_ang);
 			if (diff_ang < PI / 6 && diff_ang > -PI / 6)
-				sprite_in_vision(rend, player, &ob_sprites[i], env, diff_ang);
+				sprite_in_vision(player, &ob_sprites[i], env, diff_ang);
 		}
 		i++;
 	}
 }
 
 void	render_map(SDL_Renderer *rend, t_player *player,
-	t_obj *ob_sprites, t_envirenment *env)
+	t_obj *ob_sprites, t_env *env)
 {
 	int	s;
 
@@ -79,7 +79,7 @@ void	render_map(SDL_Renderer *rend, t_player *player,
 	draw_player(player, rend);
 	SDL_SetRenderDrawColor(rend, 255, 0, 0, 255);
 	s = 0;
-	if (env->map_size == 24)
+	if (env->mps == 24)
 	{
 		while (s < env->num_sprites)
 		{
@@ -90,15 +90,15 @@ void	render_map(SDL_Renderer *rend, t_player *player,
 	}
 }
 
-void	draw_map_scene(t_envirenment *env, SDL_Renderer *rend)
+void	draw_map_scene(t_env *env, SDL_Renderer *rend)
 {
 	t_var_int	v;
 
 	v.y0 = -1;
-	while (++v.y0 < env->map_size)
+	while (++v.y0 < env->mps)
 	{
 		v.x0 = -1;
-		while (++v.x0 < env->map_size)
+		while (++v.x0 < env->mps)
 		{
 			v.ipy = v.y0 * cellS - 1;
 			while (++v.ipy < v.y0 * cellS + cellS)
@@ -106,7 +106,7 @@ void	draw_map_scene(t_envirenment *env, SDL_Renderer *rend)
 				v.ipx = v.x0 * cellS - 1;
 				while (++v.ipx < v.x0 * cellS + cellS)
 				{
-					if (env->map[v.y0 * env->map_size + v.x0] >= 1)
+					if (env->map[v.y0 * env->mps + v.x0] >= 1)
 						SDL_SetRenderDrawColor(rend, 150, 150, 150, 255);
 					else
 						SDL_SetRenderDrawColor(rend, 0, 0, 0, 255);

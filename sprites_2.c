@@ -6,13 +6,13 @@
 /*   By: amya <amya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 10:08:28 by yzemmour          #+#    #+#             */
-/*   Updated: 2022/05/17 16:51:17 by amya             ###   ########.fr       */
+/*   Updated: 2022/05/18 12:10:19 by amya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-void	coin_collect(t_player *player, t_obj *ob_sprites, t_envirenment *env)
+void	coin_collect(t_player *player, t_obj *ob_sprites, t_env *env)
 {
 	if (distance(player->x, player->y, ob_sprites->x, ob_sprites->y) < 15)
 	{
@@ -22,7 +22,7 @@ void	coin_collect(t_player *player, t_obj *ob_sprites, t_envirenment *env)
 	}
 }
 
-void	aid_kit_collect(t_player *player, t_obj *ob_sprites, t_envirenment *env)
+void	aid_kit_collect(t_player *player, t_obj *ob_sprites, t_env *env)
 {
 	if (distance(player->x, player->y, ob_sprites->x, ob_sprites->y) < 15)
 	{
