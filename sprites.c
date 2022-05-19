@@ -6,7 +6,7 @@
 /*   By: amya <amya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 18:51:01 by yzemmour          #+#    #+#             */
-/*   Updated: 2022/05/18 14:26:53 by amya             ###   ########.fr       */
+/*   Updated: 2022/05/19 19:02:15 by amya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,11 @@ void	sort_sprites(t_obj *ob_sprites, int num_sp)
 	int		i;
 	int		j;
 	t_obj	temp;
-
+	
+	i = 0;
 	while (i < num_sp)
 	{
+		j = 0;
 		while (j < (num_sp - 1 - i))
 		{
 			if (ob_sprites[j].dist_to_player < ob_sprites[j + 1].dist_to_player)

@@ -275,6 +275,7 @@ typedef struct	s_environment
 	SDL_Surface *walls[14];
 	SDL_Surface *quit[4];
 	SDL_Surface *doors[7];
+	SDL_Surface	*beach[33];
 	SDL_Surface *shoots[9];
 	SDL_Surface *sprites[num_type_sprites];
 	SDL_Surface *floor;
@@ -292,6 +293,7 @@ typedef struct	s_environment
 	int frame_sound;
 	int frame_door;
 	int frame_quit;
+	int frame_beach;
 	int fade;
 	int num_sprites;
 	int solde;
@@ -406,4 +408,5 @@ void	init_obj(t_obj *obj, t_vars_obj vars_obj, SDL_Texture *texture);
 
 void    init_rect_sprite(t_obj *o_s, t_rec *rec, t_sp_vision *vars);
 void    player_sprite_cond(t_player *player, t_obj *ob_sprites, int	s);
+void	load_beach1(t_env *env);
 #endif

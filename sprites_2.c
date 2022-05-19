@@ -6,7 +6,7 @@
 /*   By: amya <amya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 10:08:28 by yzemmour          #+#    #+#             */
-/*   Updated: 2022/05/18 12:10:19 by amya             ###   ########.fr       */
+/*   Updated: 2022/05/19 18:50:50 by amya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	select_texture_2(t_texture *t, t_env *env)
 		(t->img) = env->walls[13];
 	if (t->num == 16)
 		(t->img) = env->quit[env->frame_quit];
+	if (t->num == 17)
+		(t->img) = env->beach[env->frame_beach];
 }
 
 void	select_texture(t_texture *t, t_env *env)

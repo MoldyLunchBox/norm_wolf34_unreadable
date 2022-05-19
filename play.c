@@ -6,7 +6,7 @@
 /*   By: amya <amya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 19:00:30 by yzemmour          #+#    #+#             */
-/*   Updated: 2022/05/18 12:19:40 by amya             ###   ########.fr       */
+/*   Updated: 2022/05/19 18:54:27 by amya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,4 +97,7 @@ void	quit_animation(t_env *env)
 	{
 		env->frame_quit = 0;
 	}
+	env->frame_beach++;
+	if (env->frame_beach == 32)
+		env->frame_beach = 0;
 }

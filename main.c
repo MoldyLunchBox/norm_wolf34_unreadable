@@ -6,7 +6,7 @@
 /*   By: amya <amya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 10:50:01 by yzemmour          #+#    #+#             */
-/*   Updated: 2022/05/18 12:10:19 by amya             ###   ########.fr       */
+/*   Updated: 2022/05/19 18:59:06 by amya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ int	main(int argc, char *argv[])
 
 	parsing(&env, argv[1]);
 	init_game(&env, &player);
+	load_beach1(&env);
 	load_walls(&env);
 	load_doors(&env);
 	load_shoots(&env);

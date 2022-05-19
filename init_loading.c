@@ -6,7 +6,7 @@
 /*   By: amya <amya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 17:11:52 by amya              #+#    #+#             */
-/*   Updated: 2022/05/18 12:19:40 by amya             ###   ########.fr       */
+/*   Updated: 2022/05/19 19:08:15 by amya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	env_reset(t_env *env)
 	env->screen = 1;
 	env->fps = 2;
 	env->fps_quit = 2;
+	env->frame_beach = 0;
 	env->frame_sound = 0;
 	env->frame_quit = 0;
 	env->frame_door = 0;
@@ -92,7 +93,7 @@ void	init_sound_effect_2(t_env *env)
 
 void	init_sound_effect(t_env *env)
 {
-	env->music = Mix_LoadMUS("resources/sounds/music.wav");
+	env->music = Mix_LoadMUS("resources/sounds/zombie.wav");
 	Mix_VolumeMusic(MIX_MAX_VOLUME / 4);
 	Mix_AllocateChannels(7);
 	env->foots_sound = Mix_LoadWAV("resources/sounds/footsteps.wav");

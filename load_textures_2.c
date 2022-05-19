@@ -6,7 +6,7 @@
 /*   By: amya <amya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 18:17:51 by yzemmour          #+#    #+#             */
-/*   Updated: 2022/05/18 12:10:19 by amya             ###   ########.fr       */
+/*   Updated: 2022/05/19 18:51:58 by amya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,46 @@ void	create_decoration_texture(t_env *env, t_decor_texture *t,
 	env->floor = IMG_Load("resources/floor_derty.png");
 	env->ceil = IMG_Load("resources/ceil.png");
 	env->sky = IMG_Load("resources/night_sky.png");
+}
+
+void	load_beach2(t_env *env)
+{
+	env->beach[18] = IMG_Load("resources/images/beach/frame_18.png");
+	env->beach[19] = IMG_Load("resources/images/beach/frame_19.png");
+	env->beach[20] = IMG_Load("resources/images/beach/frame_20.png");
+	env->beach[21] = IMG_Load("resources/images/beach/frame_21.png");
+	env->beach[22] = IMG_Load("resources/images/beach/frame_22.png");
+	env->beach[23] = IMG_Load("resources/images/beach/frame_23.png");
+	env->beach[24] = IMG_Load("resources/images/beach/frame_24.png");
+	env->beach[25] = IMG_Load("resources/images/beach/frame_25.png");
+	env->beach[26] = IMG_Load("resources/images/beach/frame_26.png");
+	env->beach[27] = IMG_Load("resources/images/beach/frame_27.png");
+	env->beach[28] = IMG_Load("resources/images/beach/frame_28.png");
+	env->beach[29] = IMG_Load("resources/images/beach/frame_29.png");
+	env->beach[30] = IMG_Load("resources/images/beach/frame_30.png");
+	env->beach[31] = IMG_Load("resources/images/beach/frame_31.png");
+	env->beach[32] = IMG_Load("resources/images/beach/frame_32.png");
+}
+
+void	load_beach1(t_env *env)
+{
+	env->beach[0] = IMG_Load("resources/images/beach/frame_00.png");
+	env->beach[1] = IMG_Load("resources/images/beach/frame_01.png");
+	env->beach[2] = IMG_Load("resources/images/beach/frame_02.png");
+	env->beach[3] = IMG_Load("resources/images/beach/frame_03.png");
+	env->beach[4] = IMG_Load("resources/images/beach/frame_04.png");
+	env->beach[5] = IMG_Load("resources/images/beach/frame_05.png");
+	env->beach[6] = IMG_Load("resources/images/beach/frame_06.png");
+	env->beach[7] = IMG_Load("resources/images/beach/frame_07.png");
+	env->beach[8] = IMG_Load("resources/images/beach/frame_08.png");
+	env->beach[9] = IMG_Load("resources/images/beach/frame_09.png");
+	env->beach[10] = IMG_Load("resources/images/beach/frame_10.png");
+	env->beach[11] = IMG_Load("resources/images/beach/frame_11.png");
+	env->beach[12] = IMG_Load("resources/images/beach/frame_12.png");
+	env->beach[13] = IMG_Load("resources/images/beach/frame_13.png");
+	env->beach[14] = IMG_Load("resources/images/beach/frame_14.png");
+	env->beach[15] = IMG_Load("resources/images/beach/frame_15.png");
+	env->beach[16] = IMG_Load("resources/images/beach/frame_16.png");
+	env->beach[17] = IMG_Load("resources/images/beach/frame_17.png");
+	load_beach2(env);
 }
