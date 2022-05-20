@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_2.c                                         :+:      :+:    :+:   */
+/*   render_2 copy.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amya <amya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 19:16:49 by yzemmour          #+#    #+#             */
-/*   Updated: 2022/05/18 13:50:01 by amya             ###   ########.fr       */
+/*   Updated: 2022/05/20 18:09:01 by amya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	render_view(t_env *env, t_player *player, t_ray r, t_texture t)
 	float		line_h;
 
 
-	env->line.w = W_W / numRays;
+	env->line.w = W_W / NUMRAYS;
 	env->line.x = r.num * env->line.w;
 	env->line.h = 1;
 	line_h = (WALL_H * 220) / r.dist;

@@ -6,7 +6,7 @@
 /*   By: amya <amya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/15 19:07:26 by yzemmour          #+#    #+#             */
-/*   Updated: 2022/05/18 14:10:46 by amya             ###   ########.fr       */
+/*   Updated: 2022/05/20 18:09:01 by amya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	render_rays(t_env *env, t_player *player)
 	tex.img = env->walls[0];
 	ray.ra = player->a + dtor(player->fov / 2);
 	ray.num = 0;
-	while (ray.num < numRays)
+	while (ray.num < NUMRAYS)
 	{
 		ray.ra = safe_angle(ray.ra);
 		horizontal_line(env, &ray, &tex, &v, player);
