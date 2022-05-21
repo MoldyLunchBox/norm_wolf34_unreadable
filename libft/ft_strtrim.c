@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoelguer <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amya <amya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/10 21:45:46 by yoelguer          #+#    #+#             */
-/*   Updated: 2019/04/16 00:58:27 by yoelguer         ###   ########.fr       */
+/*   Updated: 2022/05/21 12:21:32 by amya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*ft_strtrim(char const *s)
 		len--;
 	if (len <= 0)
 		len = 0;
-	str = (char*)malloc(sizeof(char) * (len + 1));
+	str = (char *)malloc(sizeof(char) * (len + 1));
 	if (str == NULL)
 		return (NULL);
 	s += i;

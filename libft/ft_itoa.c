@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoelguer <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amya <amya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/08 21:40:48 by yoelguer          #+#    #+#             */
-/*   Updated: 2019/04/18 00:53:26 by yoelguer         ###   ########.fr       */
+/*   Updated: 2022/05/21 12:30:21 by amya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,23 @@ static	char	*ft_print(int i, int p, int c, char *str)
 	return (str);
 }
 
-char			*ft_itoa(int n)
+char	*str(int i, int p, int c)
+{
+	char	*str;
+
+	str = (char *)malloc((i + 1) * sizeof(char));
+	if (!(str))
+		return (NULL);
+	str[i] = '\0';
+	ft_print(i, p, c, str);
+	return (str);
+}
+
+char	*ft_itoa(int n)
 {
 	int		i;
 	int		p;
 	int		c;
-	char	*str;
 
 	i = 1;
 	c = n;
@@ -46,9 +57,5 @@ char			*ft_itoa(int n)
 		n = n / 10;
 		i++;
 	}
-	if (!(str = (char*)malloc((i + 1) * sizeof(char))))
-		return (NULL);
-	str[i] = '\0';
-	ft_print(i, p, c, str);
-	return (str);
+	return (str(i, p, c));
 }

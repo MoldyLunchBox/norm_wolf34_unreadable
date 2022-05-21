@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoelguer <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amya <amya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/12 23:16:46 by yoelguer          #+#    #+#             */
-/*   Updated: 2019/10/23 23:29:14 by yoelguer         ###   ########.fr       */
+/*   Updated: 2022/05/21 12:27:41 by amya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		ft_is_there(char *str, char c)
+static int	ft_is_there(char *str, char c)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -26,7 +26,7 @@ static int		ft_is_there(char *str, char c)
 	return (0);
 }
 
-static int		ft_copy(char **str, char **line)
+static int	ft_copy(char **str, char **line)
 {
 	int			i;
 	char		*ptr;
@@ -48,7 +48,7 @@ static int		ft_copy(char **str, char **line)
 	return (1);
 }
 
-int				get_next_line(const int fd, char **line)
+int	get_next_line(const int fd, char **line)
 {
 	char		buff[BUFF_SIZE + 1];
 	char		*ptr;
@@ -57,7 +57,8 @@ int				get_next_line(const int fd, char **line)
 
 	if (fd < 0 || fd > 4864 || read(fd, buff, 0) < 0)
 		return (-1);
-	(!str[fd]) ? str[fd] = ft_strnew(0) : str[fd];
+	if (!str[fd])
+		str[fd] = ft_strnew(0);
 	while (!ft_is_there(str[fd], '\n') && (ret = read(fd, buff, BUFF_SIZE)) > 0)
 	{
 		buff[ret] = '\0';

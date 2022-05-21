@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yoelguer <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amya <amya@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/03 14:48:09 by yoelguer          #+#    #+#             */
-/*   Updated: 2020/01/30 22:14:37 by yoelguer         ###   ########.fr       */
+/*   Updated: 2022/05/21 12:19:49 by amya             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
+
+typedef struct s_2d
+{
+    int i;
+    int j;
+}               t_2d;
 
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
 size_t	ft_strlen(const char *s);
